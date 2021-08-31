@@ -15,13 +15,18 @@ async function getPosts() {
       posts = response.data;
       cnt = response.data.length >= 5 ? 5 : response.data.length;
       for (var i = 0; i < cnt; i++) {
-        document.querySelector(
-          ".container"
-        ).innerHTML += `<a href="/update/${response.data[i]._id}" style="text-decoration: none">
+        document.querySelector(".container").innerHTML += `<a href="/update/${
+          response.data[i]._id
+        }" style="text-decoration: none">
           <div
             class="container shadow-sm my-5 d-flex justify-content-between p-4 posts"
           >
+            <div>
             <h5>${response.data[i].title}</h5>
+            <p>Created At ${new Date(
+              response.data[i].date
+            ).toLocaleDateString()}</p>
+            </div>
             <form action="/delete/${response.data[i]._id}" method="POST">
               <button type="submit" class="btn btn-danger">Delete</button>
             </form>
@@ -39,13 +44,16 @@ async function getPosts() {
     if (temp <= 5) {
       document.querySelector(".text-center").innerHTML = "";
       for (var i = cnt; i < cnt + temp; i++) {
-        document.querySelector(
-          ".container"
-        ).innerHTML += `<a href="/update/${posts[i]._id}" style="text-decoration: none">
+        document.querySelector(".container").innerHTML += `<a href="/update/${
+          posts[i]._id
+        }" style="text-decoration: none">
                 <div
                   class="container shadow-sm my-5 d-flex justify-content-between p-4 posts"
                 >
-                  <h5>${posts[i].title}</h5>
+                  <div>
+            <h5>${posts[i].title}</h5>
+            <p>Created At ${new Date(posts[i].date).toLocaleDateString()}</p>
+            </div>
                   <form action="/delete/${posts[i]._id}" method="POST">
                     <button type="submit" class="btn btn-danger">Delete</button>
                   </form>
@@ -56,13 +64,16 @@ async function getPosts() {
       cnt += temp;
     } else {
       for (var i = cnt; i < cnt + 5; i++) {
-        document.querySelector(
-          ".container"
-        ).innerHTML += `<a href="/update/${posts[i]._id}" style="text-decoration: none">
+        document.querySelector(".container").innerHTML += `<a href="/update/${
+          posts[i]._id
+        }" style="text-decoration: none">
                     <div
                       class="container shadow-sm my-5 d-flex justify-content-between p-4 posts"
                     >
-                      <h5><${posts[i].title}</h5>
+                      <div>
+            <h5>${posts[i].title}</h5>
+            <p>Created At ${new Date(posts[i].date).toLocaleDateString()}</p>
+            </div>
                       <form action="/delete/${posts[i]._id}" method="POST">
                         <button type="submit" class="btn btn-danger">Delete</button>
                       </form>
