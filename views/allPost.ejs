@@ -1,11 +1,25 @@
 <%- include("header") -%>
 
-<div class="container"></div>
-
-<div class="text-center my-5">
-  <button type="button" class="btn btn-primary sams">More Posts</button>
+<div class="container my-3">
+  <form>
+    <input
+      type="text"
+      id="search"
+      placeholder="Search By Title"
+      class="form-control"
+    />
+  </form>
 </div>
 
+<div class="container" id="container"></div>
+
+<div class="text-center my-5">
+  <button type="button" class="btn btn-primary sams" style="visibility: hidden">
+    More Posts
+  </button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-umd-min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="js/allPost.js"></script>
 

@@ -1,16 +1,14 @@
 const Post = require("../models/Post");
 
 exports.getAllPostPage = async function (req, res) {
-  const posts = await Post.find();
   res.render("allPost", {
     title: "All Post",
-    posts,
   });
 };
 
-exports.getAllPost = async function (req, res) {
-  const posts = await Post.find();
-  res.send(posts);
+exports.getPost = async function (req, res) {
+  const posts = await Post.find().skip(req.body.size).limit(5);
+  res.send({ posts });
 };
 
 exports.addPostPage = function (req, res) {
@@ -50,4 +48,11 @@ exports.updatePostPage = async function (req, res) {
   const { postId } = req.params;
   const post = await Post.findById(postId);
   res.render("updatePost", { post, title: "Update Post" });
+};
+
+exports.getSearch = async function (req, res) {
+  const posts = await Post.find({
+    title: { $regex: req.body.value, $options: "i" },
+  });
+  res.send({ posts });
 };
